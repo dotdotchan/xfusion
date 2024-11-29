@@ -138,7 +138,7 @@ xf_err_t xf_sle_ssapc_request_read_by_uuid(
  */
 xf_err_t xf_sle_ssapc_request_write_data(
     uint8_t app_id, uint16_t conn_id,
-    uint8_t type, uint16_t handle,
+    uint16_t handle, uint8_t type,
     uint8_t *data, uint16_t data_len);
 
 /**

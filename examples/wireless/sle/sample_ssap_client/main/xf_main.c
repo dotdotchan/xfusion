@@ -112,7 +112,7 @@ static void sle_client_task(xf_task_t task)
                 s_app_id, s_conn_id, prop_struct.start_hdl);
         uint8_t data_write[] = "I M SSAPC WRITE REQ!";
         ret = xf_sle_ssapc_request_write_data(s_app_id, s_conn_id,
-                                              XF_SLE_SSAP_PROPERTY_TYPE_VALUE, prop_struct.start_hdl,
+                                              prop_struct.start_hdl, XF_SLE_SSAP_PROPERTY_TYPE_VALUE,
                                               data_write, sizeof(data_write));
         if (ret != XF_OK) {
             XF_LOGE(TAG, ">> request write cmd error: %#X", ret);
