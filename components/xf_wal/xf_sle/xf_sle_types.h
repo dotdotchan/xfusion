@@ -15,7 +15,6 @@
 /* ==================== [Includes] ========================================== */
 
 #include "xf_utils.h"
-#include "xf_ble_gap_types.h"
 
 #define XF_SLE_IS_ENABLE 1
 
@@ -33,25 +32,40 @@ extern "C" {
 #define XF_SLE_DEBUG_ENABLE    1
 #endif
 
-#define XF_SLE_ADDR_LEN        6
-
 /* ==================== [Typedefs] ========================================== */
 
+/**
+ * @brief SLE 地址长度
+ */
+#define XF_SLE_ADDR_LEN        6
+
+/**
+ * @brief SLE 地址打印格式
+ */
+#define XF_SLE_ADDR_PRINT_FMT  "%02X:%02X:%02X:%02X:%02X:%02X"
+
+/**
+ * @brief SLE 地址展开为参数
+ *
+ * @note 一般用于配合 'XF_SLE_ADDR_PRINT_FMT' 进行地址打印输出
+ */
+#define XF_SLE_ADDR_EXPAND_TO_ARG(addr)  (addr)[0],(addr)[1],(addr)[2],(addr)[3],(addr)[4],(addr)[5]
+
+/**
+ * @brief  SLE 地址类型
+ */
 typedef enum {
-    XF_SLE_ADDRESS_TYPE_PUBLIC = 0,      /*!< @if Eng public address
-                                           @else   公有地址 @endif */
-    XF_SLE_ADDRESS_TYPE_RANDOM = 6,      /*!< @if Eng random address
-                                           @else   随机地址 @endif */
+    XF_SLE_ADDRESS_TYPE_PUBLIC = 0,     /*!< 公有地址 */
+    XF_SLE_ADDRESS_TYPE_RANDOM = 6,     /*!< 随机地址 */
 } xf_sle_addr_type_t;
 
-
+/**
+ * @brief  SLE 地址信息
+ */
 typedef struct {
-    xf_sle_addr_type_t type;            /*!< SLE设备地址类型 */
-    uint8_t addr[XF_SLE_ADDR_LEN];     /*!< SLE设备地址 */
+    xf_sle_addr_type_t type;            /*!< SLE 地址类型 */
+    uint8_t addr[XF_SLE_ADDR_LEN];      /*!< SLE 地址值 */
 } xf_sle_addr_t;
-
-#define XF_SLE_ADDR_PRINT_FMT  "%02X:%02X:%02X:%02X:%02X:%02X"
-#define XF_SLE_ADDR_EXPAND_TO_ARG(addr)  (addr)[0],(addr)[1],(addr)[2],(addr)[3],(addr)[4],(addr)[5]
 
 /* ==================== [Global Prototypes] ================================= */
 
