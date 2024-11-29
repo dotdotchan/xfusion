@@ -41,7 +41,7 @@ extern "C" {
  *      - XF_FAIL               失败
  *      - (OTHER)               @ref xf_err_t
  */
-xf_err_t xf_ble_gatts_register_app_profile(
+xf_err_t xf_ble_gatts_app_register(
     xf_bt_uuid_info_t *app_uuid, uint8_t *app_id);
 
 /**
@@ -53,7 +53,7 @@ xf_err_t xf_ble_gatts_register_app_profile(
  *      - XF_FAIL               失败
  *      - (OTHER)               @ref xf_err_t
  */
-xf_err_t xf_ble_gatts_unregister_app_profile(uint8_t app_id);
+xf_err_t xf_ble_gatts_app_unregister(uint8_t app_id);
 
 /* TODO 支持多服务添加到一个 profile  */
 

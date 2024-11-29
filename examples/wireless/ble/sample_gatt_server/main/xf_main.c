@@ -111,7 +111,7 @@ void xf_main(void)
     xf_ble_gap_set_local_appearance(XF_BLE_APPEARANCE_HID_DIGITIZER_TABLET);
 
     // 注册 gatts app_profile
-    ret = xf_ble_gatts_register_app_profile(&app_uuid, &app_id);
+    ret = xf_ble_gatts_app_register(&app_uuid, &app_id);
     XF_CHECK(ret != XF_OK || app_id == 0, XF_RETURN_VOID, TAG,
              "REGISTER app profile failed:%#X app_id:%d", ret, app_id);
 
@@ -156,7 +156,7 @@ static xf_err_t sample_ble_gatts_event_cb(
         xf_ble_gatts_ntf_ind_t indication_param = {
             .value = read_req_indication,
             .value_len = sizeof(read_req_indication),
-            .chara_value_handle = param.read_req.handle
+            .handle = param.read_req.handle
         };
         xf_err_t ret = xf_ble_gatts_send_notification(
                            app_id, param.read_req.conn_id, &indication_param);
@@ -175,7 +175,7 @@ static xf_err_t sample_ble_gatts_event_cb(
             xf_ble_gatts_ntf_ind_t indication_param = {
                 .value = write_req_indication,
                 .value_len = sizeof(write_req_indication),
-                .chara_value_handle = param.write_req.handle,
+                .handle = param.write_req.handle,
             };
             xf_err_t ret = xf_ble_gatts_send_notification(
                                app_id, param.write_req.conn_id, &indication_param);
@@ -263,7 +263,7 @@ static void sample_ble_set_adv_param(void)
         .max_interval = DEFAULT_BLE_GAP_ADV_MAX_INTERVAL,
 
         // 广播类型
-        .adv_type = XF_BLE_ADV_TYPE_CONN_SCAN_UNDIR,
+        .adv_type = XF_BLE_GAP_ADV_TYPE_CONN_SCAN_UNDIR,
         .own_addr =
         {
             .type = XF_BT_ADDR_TYPE_PUBLIC_DEV, // 本端地址类型

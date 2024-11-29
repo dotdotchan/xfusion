@@ -40,7 +40,7 @@ extern "C" {
  *      - XF_FAIL               失败
  *      - (OTHER)               @ref xf_err_t
  */
-xf_err_t xf_sle_ssaps_register_app(
+xf_err_t xf_sle_ssaps_app_register(
     xf_sle_uuid_info_t *app_uuid, uint8_t *app_id);
 
 /**
@@ -52,7 +52,7 @@ xf_err_t xf_sle_ssaps_register_app(
  *      - XF_FAIL               失败
  *      - (OTHER)               @ref xf_err_t
  */
-xf_err_t xf_sle_ssaps_unregister_app(uint8_t app_id);
+xf_err_t xf_sle_ssaps_app_unregister(uint8_t app_id);
 
 /* TODO 支持多服务添加到一个 profile  */
 

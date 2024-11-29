@@ -70,7 +70,7 @@ void xf_main(void)
              "REGISTER event cb failed:%#X", ret);
 
     // 注册 gattc app_profile
-    ret = xf_ble_gattc_register_app_profile(&app_uuid, &s_app_id);
+    ret = xf_ble_gattc_app_register(&app_uuid, &s_app_id);
     XF_CHECK(ret != XF_OK || s_app_id == 0, XF_RETURN_VOID, TAG,
              "REGISTER app profile failed:%#X app_id:%d", ret, s_app_id);
 
@@ -177,7 +177,7 @@ static xf_err_t gattc_event_scan_result_cb(xf_ble_gattc_evt_cb_param_t *param)
         switch (ad_type) {
         case XF_BLE_ADV_STRUCT_TYPE_LOCAL_NAME_ALL: {
             uint8_t *local_name = &ptr_current[2];
-            uint8_t local_namez_size = struct_data_len - XF_BLE_GAP_ADV_STRUCT_AD_TYPE_SIZE;
+            uint8_t local_namez_size = struct_data_len - XF_BLE_GAP_ADV_STRUCT_AD_TYPE_FIELD_SIZE;
             if (strncmp((char *)target_gatts_device_name, (char *)local_name, local_namez_size) == 0) {
                 XF_LOGI(TAG, "EV:scan_result:target local name:%s", local_name);
                 ret = xf_ble_gap_stop_scan();
@@ -190,7 +190,7 @@ static xf_err_t gattc_event_scan_result_cb(xf_ble_gattc_evt_cb_param_t *param)
             XF_LOGD(TAG, "EV:scan_result:uncaring ad_type:%#2X", ad_type);
         } break;
         }
-        ptr_current += (struct_data_len + XF_BLE_GAP_ADV_STRUCT_LEN_SIZE);
+        ptr_current += (struct_data_len + XF_BLE_GAP_ADV_STRUCT_LEN_FIELD_SIZE);
     }
     return XF_OK;
 }

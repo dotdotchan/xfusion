@@ -106,7 +106,7 @@ typedef struct _xf_ble_gatts_service_t {
  * @brief BLE GATTS 发送通知或指示的信息
  */
 typedef struct {
-    xf_bt_attr_handle_t chara_value_handle;     /*!< 属性句柄，见 @ref xf_bt_attr_handle_t */
+    xf_bt_attr_handle_t handle;     /*!< 属性句柄，见 @ref xf_bt_attr_handle_t */
     uint16_t value_len;                         /*!< 通知/指示的值长度 */
     uint8_t *value;                             /*!< 发送的通知/指示的值 */
 } xf_ble_gatts_ntf_ind_t;

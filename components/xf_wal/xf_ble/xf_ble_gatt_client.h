@@ -41,7 +41,7 @@ extern "C" {
  *      - XF_FAIL               失败
  *      - (OTHER)               @ref xf_err_t
  */
-xf_err_t xf_ble_gattc_register_app_profile(
+xf_err_t xf_ble_gattc_app_register(
     xf_bt_uuid_info_t *app_uuid, uint8_t *app_id);
 
 /**
@@ -53,7 +53,7 @@ xf_err_t xf_ble_gattc_register_app_profile(
  *      - XF_FAIL               失败
  *      - (OTHER)               @ref xf_err_t
  */
-xf_err_t xf_ble_gattc_unregister_app_profile(uint8_t app_id);
+xf_err_t xf_ble_gattc_app_unregister(uint8_t app_id);
 
 /**
  * @brief BLE GATTC 搜寻服务（指定 UUID 或 尝试搜寻所有服务）

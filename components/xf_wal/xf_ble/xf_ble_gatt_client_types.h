@@ -192,7 +192,7 @@ typedef struct {
     uint16_t handle;                        /*!< 特征或描述符的句柄 */
     uint16_t value_len;                     /*!< 通知或指示的属性值长度 */
     uint8_t *value;                         /*!< 通知或指示的属性值 */
-    bool is_notify;                         /*!< 是否是通知，否则是指示 */
+    bool is_ntf;                            /*!< 是否是通知，否则是指示 */
 } xf_ble_evt_param_gattc_notify_t;
 
 /**

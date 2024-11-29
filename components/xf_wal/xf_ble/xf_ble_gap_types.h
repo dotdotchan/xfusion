@@ -173,11 +173,11 @@ typedef enum {
 /**
  * @brief BLE GAP 广播数据单元类型 (AD_TYPE) 字段的大小
  */
-#define XF_BLE_GAP_ADV_STRUCT_AD_TYPE_SIZE  1
+#define XF_BLE_GAP_ADV_STRUCT_AD_TYPE_FIELD_SIZE  1
 /**
  * @brief BLE GAP 广播数据单元数据长度 (LEN) 字段的大小
  */
-#define XF_BLE_GAP_ADV_STRUCT_LEN_SIZE      1
+#define XF_BLE_GAP_ADV_STRUCT_LEN_FIELD_SIZE      1
 
 /**
  * @brief BLE 中类型可变的数据
@@ -336,12 +336,12 @@ typedef struct {
  *  离线文档: https://www.bluetooth.com/specifications/specs/core-specification-amended-5-4/
  */
 typedef enum {
-    XF_BLE_ADV_TYPE_CONN_SCAN_UNDIR             = 0x00, /*!< 可连接，   可扫描，    非定向 广播 (ADV_IND) (默认) */
-    XF_BLE_ADV_TYPE_CONN_NONSCAN_DIR            = 0x01, /*!< 可连接，   不可扫描，  定向 广播   (ADV_DIRECT_IND) (高频) */
-    XF_BLE_ADV_TYPE_NONCONN_SCAN_UNDIR          = 0x02, /*!< 不可连接， 可扫描，    非定向 广播 (ADV_SCAN_IND) */
-    XF_BLE_ADV_TYPE_NONCONN_NONSCAN_UNDIR       = 0x03, /*!< 不可连接， 不可扫描，  非定向 广播 (ADV_NONCONN_IND) */
-    XF_BLE_ADV_TYPE_CONN_NONSCAN_DIR_LOW_DUTY   = 0x04, /*!< 可连接，   不可扫描，  定向 广播   (ADV_DIRECT_IND) (低频) */
-} xf_ble_adv_type_t;
+    XF_BLE_GAP_ADV_TYPE_CONN_SCAN_UNDIR             = 0x00, /*!< 可连接，   可扫描，    非定向 广播 (ADV_IND) (默认) */
+    XF_BLE_GAP_ADV_TYPE_CONN_NONSCAN_DIR            = 0x01, /*!< 可连接，   不可扫描，  定向 广播   (ADV_DIRECT_IND) (高频) */
+    XF_BLE_GAP_ADV_TYPE_NONCONN_SCAN_UNDIR          = 0x02, /*!< 不可连接， 可扫描，    非定向 广播 (ADV_SCAN_IND) */
+    XF_BLE_GAP_ADV_TYPE_NONCONN_NONSCAN_UNDIR       = 0x03, /*!< 不可连接， 不可扫描，  非定向 广播 (ADV_NONCONN_IND) */
+    XF_BLE_GAP_ADV_TYPE_CONN_NONSCAN_DIR_LOW_DUTY   = 0x04, /*!< 可连接，   不可扫描，  定向 广播   (ADV_DIRECT_IND) (低频) */
+} xf_ble_gap_adv_type_t;
 
 /**
  * @brief BLE GAP 广播过滤策略，完全遵循蓝牙标准进行定义
@@ -389,7 +389,7 @@ typedef enum {
 typedef struct {
     uint32_t min_interval;                  /*!< 最小的广播间隔 [N * 0.625ms] */
     uint32_t max_interval;                  /*!< 最大的广播间隔 [N * 0.625ms] */
-    xf_ble_adv_type_t adv_type;             /*!< 广播类型，见 @ref xf_ble_adv_type_t */
+    xf_ble_gap_adv_type_t adv_type;             /*!< 广播类型，见 @ref xf_ble_gap_adv_type_t */
     xf_bt_dev_addr_t own_addr;              /*!< 本端地址，见 @ref xf_bt_dev_addr_t */
     xf_bt_dev_addr_t peer_addr;             /*!< 对端地址，见 @ref xf_bt_dev_addr_t */
     xf_ble_gap_adv_channel_t channel_map;   /*!< 广播通道，见 @ref xf_ble_gap_adv_channel_t */
