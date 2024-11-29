@@ -127,7 +127,6 @@ typedef struct {
 #define XF_BLE_DECLARE_UUID128(uuid128...) \
     ((xf_bt_uuid_info_t *) (&(xf_bt_uuid128_info_t) _XF_BLE_UUID128_INIT(uuid128)))
 
-
 /**
  * @brief BLE 无效属性句柄
  * @note 通常用于对接服务结构添加时，判断服务、特征、特征描述符等属性的句柄是否有效
@@ -163,13 +162,13 @@ typedef enum {
  *  @endcode
  */
 typedef enum {
-    XF_BLE_GATT_CHARA_PROPERTY_BROADCAST    = 0x01,     /*!< 广播特征值，允许对该特征值进行广播 */
-    XF_BLE_GATT_CHARA_PROPERTY_READ         = 0x02,     /*!< 读特征值，允许读取特征值 */
-    XF_BLE_GATT_CHARA_PROPERTY_WRITE_NO_RSP = 0x04,     /*!< 写特征值且无需响应，允许写入特征值 (没有响应) */
-    XF_BLE_GATT_CHARA_PROPERTY_WRITE        = 0x08,     /*!< 写特征值，允许写入特征值 (有响应) */
-    XF_BLE_GATT_CHARA_PROPERTY_NOTIFY       = 0x10,     /*!< 通知特征值，允许向客户端进行特征值通知 (无需确认) */
-    XF_BLE_GATT_CHARA_PROPERTY_INDICATE     = 0x20,     /*!< 指示特征值，允许向客户端进行特征值指示 (需要确认)*/
-    XF_BLE_GATT_CHARA_PROPERTY_SIGNED_WRITE = 0x40,     /*!< 签名写特征值，允许对特征值进行签名写操作 */
+    XF_BLE_GATT_CHARA_PROPERTY_BROADCAST    = 0x01,     /*!< 广播特征值：允许对该特征值进行广播 */
+    XF_BLE_GATT_CHARA_PROPERTY_READ         = 0x02,     /*!< 读特征值：允许读取特征值 */
+    XF_BLE_GATT_CHARA_PROPERTY_WRITE_NO_RSP = 0x04,     /*!< 写特征值且无需响应：允许写入特征值 (没有响应) */
+    XF_BLE_GATT_CHARA_PROPERTY_WRITE        = 0x08,     /*!< 写特征值且需要响应：允许写入特征值 (有响应) */
+    XF_BLE_GATT_CHARA_PROPERTY_NOTIFY       = 0x10,     /*!< 通知特征值：允许向客户端进行特征值通知 (无需确认) */
+    XF_BLE_GATT_CHARA_PROPERTY_INDICATE     = 0x20,     /*!< 指示特征值：允许向客户端进行特征值指示 (需要确认) */
+    XF_BLE_GATT_CHARA_PROPERTY_SIGNED_WRITE = 0x40,     /*!< 签名写特征值：允许对特征值进行签名写操作 */
 
     /* 以下为 特征的拓展特性类型  */
     XF_BLE_GATT_CHARA_PROPERTY_EXT_RELIABLE_WRITE   = 0x0080,
@@ -183,46 +182,15 @@ typedef enum {
 } xf_ble_gatt_chara_property_t;
 
 /**
- * @brief BLE GATT 属性
- * @note 属性由四部分组成：属性句柄、属性类型、属性值和属性权限
- *  @code
- *  |    2 octets | 2 or 16 octets| variable length  | implementation specific   |
- *  | attr handle |  attr type    | attr value       | attr permissions          |
- * @endcode
- */
-typedef struct _xf_ble_gatt_attr_t {
-    uint16_t handle;                /*!< 属性句柄 */
-    xf_bt_uuid_info_t type;         /*!< UUID 类型 */
-    /**
-     * @brief
-     *  用于存放数据。
-     * 如果属性类型是:
-     *  GATT特定类型（如服务项类型或特征值声明类型）:
-     *      那么属性值就是UUID（各自类型的UUID，如服务UUID、特征UUID）等信息。
-     *  如果是普通的特征值，则属性值是用户的数据。
-     */
-    uint8_t *value;
-    uint16_t permissions;
-    // uint16_t max_length;               /*!< Maximum length of the element*/
-    // uint16_t length;                   /*!< Current length of the element*/
-} xf_ble_gatt_attr_t;
-/**
- * @brief BLE GATT 最大属性长度
- */
-#define XF_BLE_GATT_MAX_ATTR_LEN        (600)
-#define XF_BLE_GATT_INVALID_HANDLE      (0x00)
-
-
-/**
  * @brief BLE GATT 特征描述符类型
  */
 typedef enum {
-    XF_BLE_GATT_CHARA_DESC_TYPE_CHARA_EXT_PROPERTIES,       // 0x2900, CEP:Characteristic Extended Properties
-    XF_BLE_GATT_CHARA_DESC_TYPE_CHARA_USER_DESC,            // 0x2901, CUD:Characteristic User Description
-    XF_BLE_GATT_CHARA_DESC_TYPE_CLIENT_CHARA_CFG,           // 0x2902, CCC:Client Characteristic Configuration
-    XF_BLE_GATT_CHARA_DESC_TYPE_SERVER_CHARA_CFG,           // 0x2903, SCC:Server Characteristic Configuration
-    XF_BLE_GATT_CHARA_DESC_TYPE_CHARA_PRESENTATION_FORMAT,  // 0x2904, CPF:Characteristic Presentation Format
-    XF_BLE_GATT_CHARA_DESC_TYPE_CHARA_AGGREGATE_FORMAT,     // 0x2903, CAF:Characteristic Aggregate Format
+    XF_BLE_GATT_CHARA_DESC_TYPE_CHARA_EXT_PROPERTIES,       /*!< 0x2900, CEP:Characteristic Extended Properties */
+    XF_BLE_GATT_CHARA_DESC_TYPE_CHARA_USER_DESC,            /*!< 0x2901, CUD:Characteristic User Description */
+    XF_BLE_GATT_CHARA_DESC_TYPE_CLIENT_CHARA_CFG,           /*!< 0x2902, CCC:Client Characteristic Configuration */
+    XF_BLE_GATT_CHARA_DESC_TYPE_SERVER_CHARA_CFG,           /*!< 0x2903, SCC:Server Characteristic Configuration */
+    XF_BLE_GATT_CHARA_DESC_TYPE_CHARA_PRESENTATION_FORMAT,  /*!< 0x2904, CPF:Characteristic Presentation Format */
+    XF_BLE_GATT_CHARA_DESC_TYPE_CHARA_AGGREGATE_FORMAT,     /*!< 0x2903, CAF:Characteristic Aggregate Format */
 } xf_ble_gatt_chara_desc_type_t;
 
 /**

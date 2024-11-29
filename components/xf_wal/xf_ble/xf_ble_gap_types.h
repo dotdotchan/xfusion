@@ -171,11 +171,11 @@ typedef enum {
 } xf_ble_gap_adv_struct_type_t;
 
 /**
- * @brief BLE GAP 广播结构中 广播类型（ AD_TYPE ）字段的大小
+ * @brief BLE GAP 广播数据单元类型 (AD_TYPE) 字段的大小
  */
 #define XF_BLE_GAP_ADV_STRUCT_AD_TYPE_SIZE  1
 /**
- * @brief BLE GAP 广播结构中 广播数据长度（ LEN ）字段的大小
+ * @brief BLE GAP 广播数据单元数据长度 (LEN) 字段的大小
  */
 #define XF_BLE_GAP_ADV_STRUCT_LEN_SIZE      1
 
@@ -322,8 +322,8 @@ typedef struct {
     xf_ble_gap_adv_struct_t *adv_struct_set;    /*!< 广播数据单元（ AD Structure ）的集合，
                                                  * 见 @ref xf_ble_gap_adv_struct_t */
 
-    uint16_t scan_rsp_length;   /*!< 扫描响应数据长度， */
-    uint8_t *scan_rsp_data;     /*!< 扫描响应数据 */
+    uint16_t scan_rsp_length;                   /*!< 扫描响应数据长度， */
+    uint8_t *scan_rsp_data;                     /*!< 扫描响应数据 */
 } xf_ble_gap_adv_data_t;
 
 
@@ -392,7 +392,7 @@ typedef struct {
     xf_ble_adv_type_t adv_type;             /*!< 广播类型，见 @ref xf_ble_adv_type_t */
     xf_bt_dev_addr_t own_addr;              /*!< 本端地址，见 @ref xf_bt_dev_addr_t */
     xf_bt_dev_addr_t peer_addr;             /*!< 对端地址，见 @ref xf_bt_dev_addr_t */
-    xf_ble_gap_adv_channel_t channel_map;   /*!< 广播通道选择，见 @ref xf_ble_gap_adv_channel_t */
+    xf_ble_gap_adv_channel_t channel_map;   /*!< 广播通道，见 @ref xf_ble_gap_adv_channel_t */
     xf_ble_gap_adv_filter_policy_t
     adv_filter_policy;   /*!< 白名单过滤策略，见 @ref xf_ble_gap_adv_filter_policy_t */
     uint32_t tx_power;                      /*!< 发送功率,单位dbm,范围-127~20 */
@@ -441,10 +441,10 @@ typedef struct {
     xf_ble_gap_phy_type_t scan_phy;                 /*!< PHY类型，见 @ref xf_ble_gap_phy_type_t */
     xf_ble_gap_scan_filter_t scan_filter_policy;    /*!< 扫描过滤策略，见 @ref xf_ble_gap_scan_filter_t */
     xf_ble_gap_scan_type_t scan_type;               /*!< 扫描类型 @ref xf_ble_gap_scan_type_t */
-    uint16_t scan_interval;             /*!< 扫描间隔，[N * 0.625 ms]，
-                                         *  范围 (看具体标准)：[0x0004, 0x4000]，[2.5 ms, 10.24 s] */
-    uint16_t scan_window;               /*!< 扫描窗长，[N * 0.625 ms]，
-                                         *  范围 (看具体标准)：[0x0004, 0x4000]，[2.5 ms, 10.24 s] */
+    uint16_t scan_interval;                         /*!< 扫描间隔，[N * 0.625 ms]，
+                                                     *  范围 (看具体标准)：[0x0004, 0x4000]，[2.5 ms, 10.24 s] */
+    uint16_t scan_window;                           /*!< 扫描窗长，[N * 0.625 ms]，
+                                                     *  范围 (看具体标准)：[0x0004, 0x4000]，[2.5 ms, 10.24 s] */
 } xf_ble_gap_scan_param_t;
 
 /**

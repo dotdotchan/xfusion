@@ -34,8 +34,8 @@ extern "C" {
  * @brief BLE GATTC 写请求的类型
  */
 typedef enum {
-    XF_BLE_GATT_WRITE_TYPE_NO_RSP  =   1,   /*!< 无需(对端)响应 (写命令) */
-    XF_BLE_GATT_WRITE_TYPE_WITH_RSP,        /*!< 需要(对端)回应 (写请求) */
+    XF_BLE_GATT_WRITE_TYPE_NO_RSP  =   1,   /*!< 无需 (对端) 响应 (写命令) */
+    XF_BLE_GATT_WRITE_TYPE_WITH_RSP,        /*!< 需要 (对端) 回应 (写请求) */
 } xf_ble_gattc_write_type_t;
 
 /**
@@ -85,7 +85,7 @@ typedef struct {
 } xf_ble_gattc_service_found_t;
 
 /**
- * @brief BLE GATTC 搜寻到的服务集合
+ * @brief BLE GATTC 搜寻到的服务集合信息
  */
 typedef struct {
     xf_ble_gattc_service_found_t *set;      /*!< 服务集合，见 @ref xf_ble_gattc_service_found_t */
@@ -196,7 +196,7 @@ typedef struct {
 } xf_ble_evt_param_gattc_notify_t;
 
 /**
- * @brief GATT 客户端事件回调参数
+ * @brief BLE GATTC 客户端事件回调参数
  */
 typedef union {
     xf_ble_evt_param_scan_t scan_param;         /*!< 扫描参数设置事件的参数，

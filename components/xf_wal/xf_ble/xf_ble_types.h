@@ -62,7 +62,7 @@ typedef enum {
  * @brief BLE GATTC 事件
  */
 typedef enum {
-    XF_BLE_GATTC_EVT_DISCOVER_SERVICE_COMPLETE = _XF_BLE_GAP_EVT_ENUM_END,  /*!< 服务结构发现完毕事件 */
+    XF_BLE_GATTC_EVT_DISCOVER_SERVICE_COMPLETE = _XF_BLE_GAP_EVT_ENUM_END,  /*!< 服务结构搜寻完毕事件 */
     XF_BLE_GATTC_EVT_MTU_CHANGED,                                           /*!< MTU 变更事件 */
     XF_BLE_GATTC_EVT_WRITE_COMPLETE,                                        /*!< 写完成事件 */
     XF_BLE_GATTC_EVT_READ_COMPLETE,                                         /*!< 读完成事件 */

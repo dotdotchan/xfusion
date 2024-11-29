@@ -56,8 +56,9 @@ xf_err_t xf_ble_gatts_register_app_profile(
 xf_err_t xf_ble_gatts_unregister_app_profile(uint8_t app_id);
 
 /* TODO 支持多服务添加到一个 profile  */
+
 /**
- * @brief BLE GATTS 向应用 (服务端) 添加服务
+ * @brief BLE GATTS 向服务端 (应用) 添加服务
  *
  * @param app_id 服务端 (应用) ID
  * @param service 要添加的服务信息 ，见 @ref xf_ble_gatts_service_t
@@ -110,7 +111,7 @@ xf_err_t xf_ble_gatts_del_services_all(uint8_t app_id);
  *
  * @param app_id 服务端 (应用) ID
  * @param conn_id 链接 (连接) ID
- * @param param 发送的通知的信息
+ * @param param 发送的通知的信息，见 @ref xf_ble_gatts_ntf_ind_t
  * @return xf_err_t
  *      - XF_OK                 成功
  *      - XF_FAIL               失败
@@ -125,7 +126,7 @@ xf_err_t xf_ble_gatts_send_notification(
  *
  * @param app_id 服务端 (应用) ID
  * @param conn_id 链接 (连接) ID
- * @param param 发送的指示的信息
+ * @param param 发送的指示的信息，见 @ref xf_ble_gatts_ntf_ind_t
  * @return xf_err_t
  *      - XF_OK                 成功
  *      - XF_FAIL               失败
@@ -135,15 +136,14 @@ xf_err_t xf_ble_gatts_send_indication(
     uint8_t app_id, uint16_t conn_id,
     xf_ble_gatts_ntf_ind_t *param);
 
-// 发送请求的响应
 /**
  * @brief BLE GATTS 发送 (请求的) 响应
  *
  * @param app_id 服务端 (应用) ID
  * @param conn_id 链接 (连接) ID
  * @param trans_id 传输 ID
- * @param err_code 错误码
- * @param rsp 发送的响应的信息
+ * @param err_code 错误码，见 @ref xf_ble_gatt_err_t
+ * @param rsp 发送的响应的信息，见 @ref xf_ble_gatts_response_value_t
  * @return xf_err_t
  */
 xf_err_t xf_ble_gatts_send_response(

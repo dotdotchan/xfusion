@@ -131,7 +131,7 @@ xf_err_t xf_ble_gattc_request_read_by_handle(
  * @param conn_id 连接 ID (链接 ID )
  * @param start_handle 起始句柄
  * @param end_handle 结束句柄
- * @param uuid
+ * @param uuid 指定的 UUID
  * @return xf_err_t
  *      - XF_OK                 成功
  *      - XF_FAIL               失败

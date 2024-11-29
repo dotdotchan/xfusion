@@ -70,7 +70,7 @@ xf_err_t xf_ble_gap_set_local_addr(
 /**
  * @brief BLE GAP 获取本端设备地址
  *
- * @param[out] addr，见 @ref xf_bt_dev_addr_t
+ * @param[out] addr BLE 地址信息，见 @ref xf_bt_dev_addr_t
  * @return xf_err_t
  *      - XF_OK                 成功
  *      - XF_FAIL               失败
@@ -249,7 +249,7 @@ xf_err_t xf_ble_gap_add_pair(const xf_bt_dev_addr_t *addr);
 xf_err_t xf_ble_gap_del_pair(const xf_bt_dev_addr_t *addr);
 
 /**
- * @brief BLE GAP 取消所有配对
+ * @brief BLE GAP 删除所有配对
  *
  * @return xf_err_t
  *      - XF_OK                 成功
@@ -264,6 +264,9 @@ xf_err_t xf_ble_gap_del_pair_all(void);
  * @param max_num 要获取的最大数量
  * @param[out] dev_list 获取到的设备列表，见 @ref xf_bt_dev_addr_t
  * @return xf_err_t
+ *      - XF_OK                 成功
+ *      - XF_FAIL               失败
+ *      - (OTHER)               @ref xf_err_t
  */
 xf_err_t xf_ble_gap_get_pair_list(
     uint16_t *max_num, xf_bt_dev_addr_t *dev_list);

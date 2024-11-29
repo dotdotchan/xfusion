@@ -31,6 +31,25 @@ extern "C" {
 /* ==================== [Typedefs] ========================================== */
 
 /**
+ * @brief 属性集合的结束标记值
+ *
+ * @note 一般出现在构造服务结构时，
+ * 多个服务、特征、描述符等属性的集合的结尾部分，
+ * 一般是标记属性的 UUID 项（关键项）为
+ * 'XF_BLE_ATTR_SET_END_FLAG' 表示结束(主要是为了更好显示结束的位置)
+ *
+ * @note 由于结束标记的特殊性（NULL），用户构造时也可以
+ * 对属性集合中表示结束的最后一个属性成员结构直接置 0，如：
+ *      ([attr_set_type])
+ *      {
+ *          {...},
+ *          {...},
+ *          {0}
+ *      }
+ */
+#define XF_BLE_ATTR_SET_END_FLAG                NULL
+
+/**
  * @brief BLE GATTS 特征描述符信息
  */
 typedef struct {
@@ -39,34 +58,26 @@ typedef struct {
      * 指向描述符 UUID 的指针；使用BLE_UUIDxx_DECLARE宏声明
      * 如果服务中没有更多特征，则为NULL
      */
-    xf_bt_uuid_info_t *desc_uuid;               /*!< 特征描述符 UUID */
-    xf_ble_gatt_attr_permission_t permissions;  /*!< 权限 */
+    xf_bt_uuid_info_t *desc_uuid;               /*!< 特征描述符 UUID，见 @ref xf_bt_uuid_info_t */
+    xf_ble_gatt_attr_permission_t permissions;  /*!< 特征描述符权限，见 @ref xf_ble_gatt_attr_permission_t */
     uint8_t *value;                             /*!< 属性值 */
     uint16_t value_len;                         /*!< 属性值长度 */
-    xf_ble_gatt_chara_desc_type_t desc_type;
+    xf_ble_gatt_chara_desc_type_t desc_type;    /*!< 特征描述符类型，见 @ref xf_ble_gatt_chara_desc_type_t */
 } xf_ble_gatts_chara_desc_t;
 
 /**
- * @brief BLE 属性集合结束标志
- * @note 通用同于填充服务结构时，表示一个属性 (服务、特征、特征描述符) 集合的结束，
- * 填充至属性集合的最后一个空元素的 UUID (或者定义一个 0 元素也可)，
- * 此宏填充结束元素的 UUID 表示结束的方法仅为了更好的显示结束的位置
- */
-#define XF_BLE_ATTR_SET_END_FLAG                NULL
-
-/**
- * @brief 特征值信息。
+ * @brief BLE GATTS 特征值信息。
  * 注意，这里省略掉了 特征值声明属性中的属性类型，即特征 UUID（特征声明中的），
  * 因为此类型仅包含于特征描述声明中，便于查看。
  */
 typedef struct {
     uint8_t *value;                             /*!< 特征值 */
     uint16_t value_len;                         /*!< 特征值长度 */
-    xf_ble_gatt_attr_permission_t permission;   /*!< 特征值权限 */
+    xf_ble_gatt_attr_permission_t permission;   /*!< 特征值权限，见 @ref xf_ble_gatt_attr_permission_t */
 } xf_ble_gatts_chara_value_t;
 
 /**
- * @brief 特征信息
+ * @brief BLE GATTS 特征信息
  */
 typedef struct _xf_ble_gatts_chara_t {
     xf_bt_attr_handle_t chara_handle;           /*!< 特征句柄，见 @ref xf_bt_attr_handle_t */
@@ -75,7 +86,7 @@ typedef struct _xf_ble_gatts_chara_t {
     xf_bt_uuid_info_t *chara_uuid;              /*!< 特征 UUID ，见 @ref xf_bt_uuid_info_t */
     xf_ble_gatts_chara_value_t chara_value;     /*!< 特征值信息，见 @ref xf_ble_gatts_chara_value_t */
     xf_ble_gatts_chara_desc_t
-    *desc_set;        /*!< 特征值描述符集合信息，如无，则填 NULL，见 @ref xf_ble_gatts_chara_desc_t */
+    *desc_set;        /*!< 特征描述符集合信息，如无，则填 NULL，见 @ref xf_ble_gatts_chara_desc_t */
 } xf_ble_gatts_chara_t;
 
 /**
@@ -86,7 +97,6 @@ typedef struct _xf_ble_gatts_service_t {
     xf_bt_attr_handle_t service_handle;         /*!< 服务句柄，见 @ref xf_bt_attr_handle_t */
     xf_ble_gatt_service_type_t service_type;    /*!< 服务类型，见 @ref xf_ble_gatt_service_type_t */
     xf_bt_uuid_info_t *service_uuid;            /*!< 服务UUID ，见 @ref xf_bt_uuid_info_t */
-
     xf_ble_gatts_service_t
     **include_set;       /*!< 包含服务 (include service) 集合信息，见 @ref xf_ble_gatts_service_t */
     xf_ble_gatts_chara_t *chara_set;            /*!< 特征集合信息 ，见 @ref xf_ble_gatts_chara_t */
@@ -96,7 +106,7 @@ typedef struct _xf_ble_gatts_service_t {
  * @brief BLE GATTS 发送通知或指示的信息
  */
 typedef struct {
-    xf_bt_attr_handle_t chara_value_handle;     /*!< 属性句柄 */
+    xf_bt_attr_handle_t chara_value_handle;     /*!< 属性句柄，见 @ref xf_bt_attr_handle_t */
     uint16_t value_len;                         /*!< 通知/指示的值长度 */
     uint8_t *value;                             /*!< 发送的通知/指示的值 */
 } xf_ble_gatts_ntf_ind_t;
