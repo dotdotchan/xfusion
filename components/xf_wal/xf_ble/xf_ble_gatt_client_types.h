@@ -119,7 +119,7 @@ typedef struct {
  */
 typedef struct {
     int rssi;                                   /*!< 扫到的设备的 RSSI 值 */
-    xf_bt_dev_addr_t addr_scanned;              /*!< 扫到的设备的地址，见 @ref xf_bt_dev_addr_t */
+    xf_ble_addr_t addr_scanned;              /*!< 扫到的设备的地址，见 @ref xf_ble_addr_t */
     xf_ble_gap_scanned_adv_type_t adv_type;     /*!< 扫到的设备广播类型，见 @ref xf_ble_gap_scanned_adv_type_t */
     uint8_t adv_data_len;                       /*!< 广播数据的长度 (指整个广播数据 AdvData ) */
     uint8_t *adv_data;                          /*!< 广播数据 (指整个广播数据 AdvData ) */
@@ -132,7 +132,7 @@ typedef struct {
     uint16_t conn_id;                       /*!< 链接(连接) ID */
     uint16_t conn_handle;                   /*!< 链接的句柄 */
     xf_ble_gap_link_role_type_t link_role;  /*!< 链路角色，见 @ref xf_ble_gap_link_role_type_t */
-    xf_bt_dev_addr_t peer_addr;             /*!< 对端地址，见 @ref xf_bt_dev_addr_t */
+    xf_ble_addr_t peer_addr;             /*!< 对端地址，见 @ref xf_ble_addr_t */
 } xf_ble_evt_param_connect_t;
 
 /**
@@ -140,7 +140,7 @@ typedef struct {
  */
 typedef struct {
     uint16_t conn_id;                       /*!< 链接(连接) ID */
-    xf_bt_dev_addr_t peer_addr;             /*!< 对端地址，见 @ref xf_bt_dev_addr_t */
+    xf_ble_addr_t peer_addr;             /*!< 对端地址，见 @ref xf_ble_addr_t */
     xf_ble_gap_disconnect_reason_t reason;  /*!< 断连原因，见 @ref xf_ble_gap_disconnect_reason_t */
 } xf_ble_evt_param_disconnect_t;
 
@@ -188,7 +188,7 @@ typedef struct {
 typedef struct {
     uint8_t app_id;
     uint16_t conn_id;                       /*!< 链接(连接) ID */
-    xf_bt_dev_addr_t peer_addr;             /*!< 对端地址，见 @ref xf_bt_dev_addr_t */
+    xf_ble_addr_t peer_addr;             /*!< 对端地址，见 @ref xf_ble_addr_t */
     uint16_t handle;                        /*!< 特征或描述符的句柄 */
     uint16_t value_len;                     /*!< 通知或指示的属性值长度 */
     uint8_t *value;                         /*!< 通知或指示的属性值 */

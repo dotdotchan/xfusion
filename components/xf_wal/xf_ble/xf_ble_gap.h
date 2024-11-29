@@ -56,7 +56,7 @@ xf_err_t xf_ble_disable(void);
  * @brief BLE GAP 设置本端设备地址
  *
  * @param addr BLE 地址值
- * @param type BLE 地址类型，见 @ref xf_bt_dev_addr_type_t
+ * @param type BLE 地址类型，见 @ref xf_ble_addr_type_t
  * @return xf_err_t
  *      - XF_OK                 成功
  *      - XF_FAIL               失败
@@ -64,19 +64,19 @@ xf_err_t xf_ble_disable(void);
  *      - (OTHER)               @ref xf_err_t
  */
 xf_err_t xf_ble_gap_set_local_addr(
-    uint8_t addr[XF_BT_DEV_ADDR_LEN],
-    xf_bt_dev_addr_type_t type);
+    uint8_t addr[XF_BLE_ADDR_LEN],
+    xf_ble_addr_type_t type);
 
 /**
  * @brief BLE GAP 获取本端设备地址
  *
- * @param[out] addr BLE 地址信息，见 @ref xf_bt_dev_addr_t
+ * @param[out] addr BLE 地址信息，见 @ref xf_ble_addr_t
  * @return xf_err_t
  *      - XF_OK                 成功
  *      - XF_FAIL               失败
  *      - (OTHER)               @ref xf_err_t
  */
-xf_err_t xf_ble_gap_get_local_addr(xf_bt_dev_addr_t *addr);
+xf_err_t xf_ble_gap_get_local_addr(xf_ble_addr_t *addr);
 
 /**
  * @brief BLE GAP 设置本端设备的外观
@@ -207,46 +207,46 @@ xf_err_t xf_ble_gap_update_conn_params(xf_ble_gap_conn_param_update_t *params);
 /**
  * @brief BLE GAP 发起连接
  *
- * @param addr 要连接的地址，见 @ref xf_bt_dev_addr_t
+ * @param addr 要连接的地址，见 @ref xf_ble_addr_t
  * @return xf_err_t
  *      - XF_OK                 成功
  *      - XF_FAIL               失败
  *      - (OTHER)               @ref xf_err_t
  */
-xf_err_t xf_ble_gap_connect(const xf_bt_dev_addr_t *addr);
+xf_err_t xf_ble_gap_connect(const xf_ble_addr_t *addr);
 
 /**
  * @brief BLE GAP 断开连接
  *
- * @param addr 要断连的地址，见 @ref xf_bt_dev_addr_t
+ * @param addr 要断连的地址，见 @ref xf_ble_addr_t
  * @return xf_err_t
  *      - XF_OK                 成功
  *      - XF_FAIL               失败
  *      - (OTHER)               @ref xf_err_t
  */
-xf_err_t xf_ble_gap_disconnect(const xf_bt_dev_addr_t *addr);
+xf_err_t xf_ble_gap_disconnect(const xf_ble_addr_t *addr);
 
 /**
  * @brief BLE GAP 添加配对
  *
- * @param addr 要配对的设备的地址，见 @ref xf_bt_dev_addr_t
+ * @param addr 要配对的设备的地址，见 @ref xf_ble_addr_t
  * @return xf_err_t
  *      - XF_OK                 成功
  *      - XF_FAIL               失败
  *      - (OTHER)               @ref xf_err_t
  */
-xf_err_t xf_ble_gap_add_pair(const xf_bt_dev_addr_t *addr);
+xf_err_t xf_ble_gap_add_pair(const xf_ble_addr_t *addr);
 
 /**
  * @brief BLE GAP 删除配对
  *
- * @param addr 要删除配对的设备的地址，见 @ref xf_bt_dev_addr_t
+ * @param addr 要删除配对的设备的地址，见 @ref xf_ble_addr_t
  * @return xf_err_t
  *      - XF_OK                 成功
  *      - XF_FAIL               失败
  *      - (OTHER)               @ref xf_err_t
  */
-xf_err_t xf_ble_gap_del_pair(const xf_bt_dev_addr_t *addr);
+xf_err_t xf_ble_gap_del_pair(const xf_ble_addr_t *addr);
 
 /**
  * @brief BLE GAP 删除所有配对
@@ -262,27 +262,27 @@ xf_err_t xf_ble_gap_del_pair_all(void);
  * @brief BLE GAP 获取已配对的设备
  *
  * @param max_num 要获取的最大数量
- * @param[out] dev_list 获取到的设备列表，见 @ref xf_bt_dev_addr_t
+ * @param[out] dev_list 获取到的设备列表，见 @ref xf_ble_addr_t
  * @return xf_err_t
  *      - XF_OK                 成功
  *      - XF_FAIL               失败
  *      - (OTHER)               @ref xf_err_t
  */
 xf_err_t xf_ble_gap_get_pair_list(
-    uint16_t *max_num, xf_bt_dev_addr_t *dev_list);
+    uint16_t *max_num, xf_ble_addr_t *dev_list);
 
 /**
  * @brief BLE GAP 获取已绑定的设备
  *
  * @param max_num 要获取的最大数量
- * @param[out] dev_list 获取到的设备列表，见 @ref xf_bt_dev_addr_t
+ * @param[out] dev_list 获取到的设备列表，见 @ref xf_ble_addr_t
  * @return xf_err_t
  *      - XF_OK                 成功
  *      - XF_FAIL               失败
  *      - (OTHER)               @ref xf_err_t
  */
 xf_err_t xf_ble_gap_get_bond_list(
-    int *max_num, xf_bt_dev_addr_t *dev_list);
+    int *max_num, xf_ble_addr_t *dev_list);
 
 /**
  * @brief BLE GAP 设置安全参数

@@ -191,10 +191,10 @@ static xf_err_t sample_ble_gatts_event_cb(
     /* 事件: 连接  */
     case XF_BLE_GAP_EVT_CONNECT: {
         XF_LOGI(TAG, "EV:peer connect:app_id:%d,conn_id:%d,"
-                "addr_type:%d,addr:"XF_BT_ADDR_PRINT_FMT,
+                "addr_type:%d,addr:"XF_BLE_ADDR_PRINT_FMT,
                 app_id, param.connect.conn_id,
                 param.connect.peer_addr.type,
-                XF_BT_ADDR_EXPAND_TO_ARG(param.connect.peer_addr.addr));
+                XF_BLE_ADDR_EXPAND_TO_ARG(param.connect.peer_addr.addr));
 
         xf_ble_sm_authen_req_t authen_req = XF_BLE_SM_AUTHEN_REQ_SC_MITM_BOND;
         xf_ble_sm_io_cap_t io_capability = XF_BLE_SM_IO_CAP_NONE;
@@ -211,19 +211,19 @@ static xf_err_t sample_ble_gatts_event_cb(
     } break;
     case XF_BLE_GAP_EVT_PAIR_END: {
         XF_LOGI(TAG, "EV:pair end:app_id:%d,conn_id:%d,"
-                "addr_type:%d,addr:"XF_BT_ADDR_PRINT_FMT,
+                "addr_type:%d,addr:"XF_BLE_ADDR_PRINT_FMT,
                 app_id, param.connect.conn_id,
                 param.connect.peer_addr.type,
-                XF_BT_ADDR_EXPAND_TO_ARG(param.connect.peer_addr.addr));
+                XF_BLE_ADDR_EXPAND_TO_ARG(param.connect.peer_addr.addr));
     } break;
     /* 事件: 断连  */
     case XF_BLE_GAP_EVT_DISCONNECT: {
         XF_LOGI(TAG, "EV:peer disconnect:app_id:%d,conn_id:%d,reason:%u,"
-                "addr_type:%d,addr:"XF_BT_ADDR_PRINT_FMT,
+                "addr_type:%d,addr:"XF_BLE_ADDR_PRINT_FMT,
                 app_id, param.disconnect.conn_id,
                 param.disconnect.reason,
                 param.disconnect.peer_addr.type,
-                XF_BT_ADDR_EXPAND_TO_ARG(param.disconnect.peer_addr.addr));
+                XF_BLE_ADDR_EXPAND_TO_ARG(param.disconnect.peer_addr.addr));
         XF_LOGI(TAG, "It will restart ADV");
         xf_ble_gap_start_adv();
     } break;

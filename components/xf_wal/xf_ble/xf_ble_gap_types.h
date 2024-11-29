@@ -97,55 +97,6 @@ typedef uint16_t xf_ble_appearance_t;
 #define XF_BLE_APPEARANCE_OUTDOOR_SPORTS_LOCATION_POD_AND_NAV   0x1444
 
 /**
- * @brief 蓝牙地址类型，完全遵循蓝牙标准进行定义
- *
- * @details 地址类型如下：
- * @code
- *  1、公共设备地址（类似USB VID，需申请）
- *  2、随机设备地址：设备启动后随机生成
- *      2.A、静态设备地址：在启动后地址不变，下次复位后地址可能会变（非强制要求）
- *      2.B、私有设备地址：地址会更新
- *          2.B.1、不可解析私有地址：地址定时更新
- *          2.B.2、可解析私有地址：地址加密生成
- * @endcode
- * @ref 详参蓝牙核心文档 《Core_v5.4》>| Vol 6, Part B >| 1.3 DEVICE ADDRESS
- *  在线文档: https://www.bluetooth.com/specifications/specs/core54-html/
- *  离线文档: https://www.bluetooth.com/specifications/specs/core-specification-amended-5-4/
- */
-typedef enum {
-    XF_BT_ADDR_TYPE_PUBLIC_DEV  = 0x00,     /*!< 公有地址 */
-    XF_BT_ADDR_TYPE_RANDOM_DEV  = 0x01,     /*!< 随机地址 */
-    XF_BT_ADDR_TYPE_RPA_PUBLIC  = 0x02,     /*!< 不可解析私有地址：地址定时更新 */
-    XF_BT_ADDR_TYPE_RPA_RANDOM  = 0x03,     /*!< 可解析私有地址：地址加密生成 */
-} xf_bt_dev_addr_type_t;
-
-
-/**
- * @brief 蓝牙地址长度
- */
-#define XF_BT_DEV_ADDR_LEN     6
-
-/**
- * @brief 蓝牙地址打印格式
- */
-#define XF_BT_ADDR_PRINT_FMT  "%02X:%02X:%02X:%02X:%02X:%02X"
-
-/**
- * @brief 蓝牙地址展开为参数
- *
- * @note 一般用于配合 'XF_BT_ADDR_PRINT_FMT' 进行地址打印输出
- */
-#define XF_BT_ADDR_EXPAND_TO_ARG(addr)  (addr)[0],(addr)[1],(addr)[2],(addr)[3],(addr)[4],(addr)[5]
-
-/**
- * @brief 蓝牙地址
- */
-typedef struct {
-    uint8_t addr[XF_BT_DEV_ADDR_LEN];     /*!< 蓝牙地址值 */
-    xf_bt_dev_addr_type_t type;           /*!< 蓝牙地址类型，见 @ref xf_bt_dev_addr_type_t */
-} xf_bt_dev_addr_t;
-
-/**
  * @brief BLE GAP 链接角色类型
  */
 typedef enum {
@@ -178,27 +129,6 @@ typedef enum {
  * @brief BLE GAP 广播数据单元数据长度 (LEN) 字段的大小
  */
 #define XF_BLE_GAP_ADV_STRUCT_LEN_FIELD_SIZE      1
-
-/**
- * @brief BLE 中类型可变的数据
- *
- * @note 基于 uintptr 类型，可变数据的最大大小等于 uintptr 类型的大小
- */
-typedef union _xf_ble_var_uintptr_t {
-    uintptr_t   _untyped;
-    bool        val_bool;
-    uint8_t     val_u8;
-    uint16_t    val_u16;
-    uint32_t    val_u32;
-
-    uint8_t     *ptr_u8;
-    uint16_t    *ptr_u16;
-    uint32_t    *ptr_u32;
-
-    uint8_t     array_u8[sizeof(uintptr_t)];
-    uint16_t    array_u16[sizeof(uintptr_t) / sizeof(uint16_t)];
-    uint32_t    array_u32[sizeof(uintptr_t) / sizeof(uint32_t)];
-} xf_ble_var_uintptr_t;
 
 /**
  * @brief BLE GAP 广播数据单元的数据 ( AD Data )
@@ -390,8 +320,8 @@ typedef struct {
     uint32_t min_interval;                  /*!< 最小的广播间隔 [N * 0.625ms] */
     uint32_t max_interval;                  /*!< 最大的广播间隔 [N * 0.625ms] */
     xf_ble_gap_adv_type_t adv_type;             /*!< 广播类型，见 @ref xf_ble_gap_adv_type_t */
-    xf_bt_dev_addr_t own_addr;              /*!< 本端地址，见 @ref xf_bt_dev_addr_t */
-    xf_bt_dev_addr_t peer_addr;             /*!< 对端地址，见 @ref xf_bt_dev_addr_t */
+    xf_ble_addr_t own_addr;              /*!< 本端地址，见 @ref xf_ble_addr_t */
+    xf_ble_addr_t peer_addr;             /*!< 对端地址，见 @ref xf_ble_addr_t */
     xf_ble_gap_adv_channel_t channel_map;   /*!< 广播通道，见 @ref xf_ble_gap_adv_channel_t */
     xf_ble_gap_adv_filter_policy_t
     adv_filter_policy;   /*!< 白名单过滤策略，见 @ref xf_ble_gap_adv_filter_policy_t */

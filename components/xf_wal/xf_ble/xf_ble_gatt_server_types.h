@@ -127,7 +127,7 @@ typedef struct {
     uint16_t conn_id;                           /*!< 链接 (连接) ID */
     uint16_t conn_handle;                       /*!< 链接 (连接) 句柄 */
     xf_ble_gap_link_role_type_t link_role;      /*!< 链路角色，见 @ref xf_ble_gap_link_role_type_t */
-    xf_bt_dev_addr_t peer_addr;                 /*!< 对端地址， @ref xf_bt_dev_addr_t */
+    xf_ble_addr_t peer_addr;                 /*!< 对端地址， @ref xf_ble_addr_t */
 } xf_ble_evt_param_connect_t;
 
 /**
@@ -135,7 +135,7 @@ typedef struct {
  */
 typedef struct {
     uint16_t conn_id;                           /*!< 链接 (连接) ID */
-    xf_bt_dev_addr_t peer_addr;                 /*!< 对端地址， @ref xf_bt_dev_addr_t */
+    xf_ble_addr_t peer_addr;                 /*!< 对端地址， @ref xf_ble_addr_t */
 } xf_ble_evt_param_pair_end_t;
 
 /**
@@ -143,7 +143,7 @@ typedef struct {
  */
 typedef struct {
     uint16_t conn_id;                           /*!< 链接 (连接) ID */
-    xf_bt_dev_addr_t peer_addr;                 /*!< 对端地址， @ref xf_bt_dev_addr_t */
+    xf_ble_addr_t peer_addr;                 /*!< 对端地址， @ref xf_ble_addr_t */
     xf_ble_gap_disconnect_reason_t reason;      /*!< 断连原因， @ref xf_ble_gap_disconnect_reason_t */
 } xf_ble_evt_param_disconnect_t;
 

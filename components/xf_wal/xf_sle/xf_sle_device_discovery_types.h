@@ -61,27 +61,6 @@ typedef enum {
 #define XF_SLE_ADV_STRUCT_LEN_FILED_SIZE        1
 
 /**
- * @brief SLE 中类型可变的数据
- *
- * @note 基于 uintptr 类型，可变数据的最大大小等于 uintptr 类型的大小
- */
-typedef union _xf_sle_var_uintptr_t {
-    uintptr_t   _untyped;
-    bool        val_bool;
-    uint8_t     val_u8;
-    uint16_t    val_u16;
-    uint32_t    val_u32;
-
-    uint8_t     *ptr_u8;
-    uint16_t    *ptr_u16;
-    uint32_t    *ptr_u32;
-
-    uint8_t     array_u8[sizeof(uintptr_t)];
-    uint16_t    array_u16[sizeof(uintptr_t) / sizeof(uint16_t)];
-    uint32_t    array_u32[sizeof(uintptr_t) / sizeof(uint32_t)];
-} xf_sle_var_uintptr_t;
-
-/**
  * @brief SLE 广播数据单元的数据
  *
  * @note 以下暂时仅列出部分类型的广播数据单元数据成员
