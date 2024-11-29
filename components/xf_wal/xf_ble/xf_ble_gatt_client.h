@@ -34,7 +34,7 @@ extern "C" {
 /**
  * @brief BLE GATTC 客户端注册
  *
- * @param[in] app_uuid 要注册的客户端 (应用) 的 UUID ，见 @ref xf_bt_uuid_info_t
+ * @param[in] app_uuid 要注册的客户端 (应用) 的 UUID ，见 @ref xf_ble_uuid_info_t
  * @param[out] app_id 客户端 (应用) ID
  * @return xf_err_t
  *      - XF_OK                 成功
@@ -42,7 +42,7 @@ extern "C" {
  *      - (OTHER)               @ref xf_err_t
  */
 xf_err_t xf_ble_gattc_app_register(
-    xf_bt_uuid_info_t *app_uuid, uint8_t *app_id);
+    xf_ble_uuid_info_t *app_uuid, uint8_t *app_id);
 
 /**
  * @brief BLE GATTC 客户端注销
@@ -60,7 +60,7 @@ xf_err_t xf_ble_gattc_app_unregister(uint8_t app_id);
  *
  * @param app_id 客户端 ID (应用 ID )
  * @param conn_id 连接 ID (链接 ID )
- * @param svc_uuid 指定搜寻的服务的 UUID，见 @ref xf_bt_uuid_info_t
+ * @param svc_uuid 指定搜寻的服务的 UUID，见 @ref xf_ble_uuid_info_t
  *      - NULL      搜寻所有服务
  *      - (OTHER)   指定搜寻的服务的 UUID ( 注意 UUID 需要为有效值，如不能为 0 )
  * @param [in,out] service_set_info 传入服务集合信息类型的指针变量的地址，
@@ -78,7 +78,7 @@ xf_err_t xf_ble_gattc_app_unregister(uint8_t app_id);
  */
 xf_err_t xf_ble_gattc_discover_service(
     uint8_t app_id, uint16_t conn_id,
-    xf_bt_uuid_info_t *service_uuid,
+    xf_ble_uuid_info_t *service_uuid,
     xf_ble_gattc_service_found_set_t **service_set_info);
 
 /**
@@ -88,7 +88,7 @@ xf_err_t xf_ble_gattc_discover_service(
  * @param conn_id 连接 ID (链接 ID )
  * @param start_handle 服务起始句柄
  * @param end_handle 服务结束句柄
- * @param chara_uuid 指定搜寻的服务的 UUID，见 @ref xf_bt_uuid_info_t
+ * @param chara_uuid 指定搜寻的服务的 UUID，见 @ref xf_ble_uuid_info_t
  * @param [in,out] out_chara_set 传入特征集合信息类型的指针变量的地址，
  * 该指针变量将会被修改为指向搜寻到的特征集合信息的地址。
  *  见 @ref xf_ble_gattc_chara_found_set_t ，例：
@@ -106,7 +106,7 @@ xf_err_t xf_ble_gattc_discover_chara(
     uint8_t app_id, uint16_t conn_id,
     uint16_t start_handle,
     uint16_t end_handle,
-    xf_bt_uuid_info_t *chara_uuid,
+    xf_ble_uuid_info_t *chara_uuid,
     xf_ble_gattc_chara_found_set_t **out_chara_set);
 
 /**
@@ -141,7 +141,7 @@ xf_err_t xf_ble_gattc_request_read_by_uuid(
     uint8_t app_id, uint16_t conn_id,
     uint16_t start_handle,
     uint16_t end_handle,
-    const xf_bt_uuid_info_t *uuid);
+    const xf_ble_uuid_info_t *uuid);
 
 
 /**

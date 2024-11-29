@@ -34,7 +34,7 @@ extern "C" {
 /**
  * @brief BLE GATTS 服务端注册
  *
- * @param[in] app_uuid 要注册的服务端 (应用) 的 UUID ，见 @ref xf_bt_uuid_info_t
+ * @param[in] app_uuid 要注册的服务端 (应用) 的 UUID ，见 @ref xf_ble_uuid_info_t
  * @param[out] app_id 服务端 (应用) ID
  * @return xf_err_t
  *      - XF_OK                 成功
@@ -42,7 +42,7 @@ extern "C" {
  *      - (OTHER)               @ref xf_err_t
  */
 xf_err_t xf_ble_gatts_app_register(
-    xf_bt_uuid_info_t *app_uuid, uint8_t *app_id);
+    xf_ble_uuid_info_t *app_uuid, uint8_t *app_id);
 
 /**
  * @brief BLE GATTS 服务端注销

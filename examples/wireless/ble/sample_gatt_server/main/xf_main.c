@@ -84,7 +84,7 @@ static xf_ble_gatts_service_t service_set[] = {
     {.service_uuid = XF_BLE_ATTR_SET_END_FLAG}
 };
 
-static xf_bt_uuid_info_t app_uuid = {
+static xf_ble_uuid_info_t app_uuid = {
     .len_type = XF_BLE_UUID_TYPE_16,
     .uuid16 = 0x0000
 };

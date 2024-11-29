@@ -43,7 +43,7 @@ typedef enum {
  */
 typedef struct {
     uint16_t handle;                                /*!< 特征描述符句柄 */
-    xf_bt_uuid_info_t uuid;                         /*!< 特征描述符 UUID ，见 @ref xf_ble_gattc_desc_found_t */
+    xf_ble_uuid_info_t uuid;                         /*!< 特征描述符 UUID ，见 @ref xf_ble_gattc_desc_found_t */
 } xf_ble_gattc_desc_found_t;
 
 /**
@@ -58,9 +58,9 @@ typedef struct {
  * @brief BLE GATTC 搜寻到的特征
  */
 typedef struct {
-    xf_bt_uuid_info_t uuid;                         /*!< 特征 UUID ，见 @ref xf_bt_uuid_info_t */
-    xf_bt_attr_handle_t handle;                     /*!< 特征句柄，见 @ref xf_bt_attr_handle_t */
-    xf_bt_attr_handle_t value_handle;               /*!< 特征值句柄，见 @ref xf_bt_attr_handle_t */
+    xf_ble_uuid_info_t uuid;                         /*!< 特征 UUID ，见 @ref xf_ble_uuid_info_t */
+    xf_ble_attr_handle_t handle;                     /*!< 特征句柄，见 @ref xf_ble_attr_handle_t */
+    xf_ble_attr_handle_t value_handle;               /*!< 特征值句柄，见 @ref xf_ble_attr_handle_t */
     xf_ble_gatt_chara_property_t properties;        /*!< 特征特性，见 @ref xf_ble_gatt_chara_property_t */
     xf_ble_gattc_desc_found_set_t
     *desc_set_info;   /*!< 特征描述符集合信息，见 @ref xf_ble_gattc_desc_found_set_t */
@@ -78,10 +78,10 @@ typedef struct {
  * @brief BLE GATTC 搜寻到的服务
  */
 typedef struct {
-    xf_bt_attr_handle_t start_hdl;                  /*!< 服务起始句柄，见 @ref xf_bt_attr_handle_t */
-    xf_bt_attr_handle_t end_hdl;                    /*!< 服务结束句柄，见 @ref xf_bt_attr_handle_t */
-    xf_bt_uuid_info_t uuid;                         /*!< 服务 UUID ，见 @ref xf_bt_uuid_info_t */
-    xf_ble_gattc_chara_found_set_t *chara_set_info; /*!< 特征集合信息 ，见 @ref xf_bt_uuid_info_t */
+    xf_ble_attr_handle_t start_hdl;                  /*!< 服务起始句柄，见 @ref xf_ble_attr_handle_t */
+    xf_ble_attr_handle_t end_hdl;                    /*!< 服务结束句柄，见 @ref xf_ble_attr_handle_t */
+    xf_ble_uuid_info_t uuid;                         /*!< 服务 UUID ，见 @ref xf_ble_uuid_info_t */
+    xf_ble_gattc_chara_found_set_t *chara_set_info; /*!< 特征集合信息 ，见 @ref xf_ble_uuid_info_t */
 } xf_ble_gattc_service_found_t;
 
 /**

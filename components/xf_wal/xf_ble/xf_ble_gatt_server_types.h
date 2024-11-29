@@ -53,12 +53,12 @@ extern "C" {
  * @brief BLE GATTS 特征描述符信息
  */
 typedef struct {
-    xf_bt_attr_handle_t chara_desc_handle;      /*!< 特征描述符句柄，见 @ref xf_bt_attr_handle_t */
+    xf_ble_attr_handle_t chara_desc_handle;      /*!< 特征描述符句柄，见 @ref xf_ble_attr_handle_t */
     /**
      * 指向描述符 UUID 的指针；使用BLE_UUIDxx_DECLARE宏声明
      * 如果服务中没有更多特征，则为NULL
      */
-    xf_bt_uuid_info_t *desc_uuid;               /*!< 特征描述符 UUID，见 @ref xf_bt_uuid_info_t */
+    xf_ble_uuid_info_t *desc_uuid;               /*!< 特征描述符 UUID，见 @ref xf_ble_uuid_info_t */
     xf_ble_gatt_attr_permission_t permissions;  /*!< 特征描述符权限，见 @ref xf_ble_gatt_attr_permission_t */
     uint8_t *value;                             /*!< 属性值 */
     uint16_t value_len;                         /*!< 属性值长度 */
@@ -80,10 +80,10 @@ typedef struct {
  * @brief BLE GATTS 特征信息
  */
 typedef struct _xf_ble_gatts_chara_t {
-    xf_bt_attr_handle_t chara_handle;           /*!< 特征句柄，见 @ref xf_bt_attr_handle_t */
+    xf_ble_attr_handle_t chara_handle;           /*!< 特征句柄，见 @ref xf_ble_attr_handle_t */
     xf_ble_gatt_chara_property_t properties;    /*!< 特征特性，见 @ref xf_ble_gatt_chara_property_t */
-    xf_bt_attr_handle_t chara_value_handle;     /*!< 特征值句柄，见 @ref xf_bt_attr_handle_t */
-    xf_bt_uuid_info_t *chara_uuid;              /*!< 特征 UUID ，见 @ref xf_bt_uuid_info_t */
+    xf_ble_attr_handle_t chara_value_handle;     /*!< 特征值句柄，见 @ref xf_ble_attr_handle_t */
+    xf_ble_uuid_info_t *chara_uuid;              /*!< 特征 UUID ，见 @ref xf_ble_uuid_info_t */
     xf_ble_gatts_chara_value_t chara_value;     /*!< 特征值信息，见 @ref xf_ble_gatts_chara_value_t */
     xf_ble_gatts_chara_desc_t
     *desc_set;        /*!< 特征描述符集合信息，如无，则填 NULL，见 @ref xf_ble_gatts_chara_desc_t */
@@ -94,9 +94,9 @@ typedef struct _xf_ble_gatts_chara_t {
  */
 typedef struct _xf_ble_gatts_service_t xf_ble_gatts_service_t;
 typedef struct _xf_ble_gatts_service_t {
-    xf_bt_attr_handle_t service_handle;         /*!< 服务句柄，见 @ref xf_bt_attr_handle_t */
+    xf_ble_attr_handle_t service_handle;         /*!< 服务句柄，见 @ref xf_ble_attr_handle_t */
     xf_ble_gatt_service_type_t service_type;    /*!< 服务类型，见 @ref xf_ble_gatt_service_type_t */
-    xf_bt_uuid_info_t *service_uuid;            /*!< 服务UUID ，见 @ref xf_bt_uuid_info_t */
+    xf_ble_uuid_info_t *service_uuid;            /*!< 服务UUID ，见 @ref xf_ble_uuid_info_t */
     xf_ble_gatts_service_t
     **include_set;       /*!< 包含服务 (include service) 集合信息，见 @ref xf_ble_gatts_service_t */
     xf_ble_gatts_chara_t *chara_set;            /*!< 特征集合信息 ，见 @ref xf_ble_gatts_chara_t */
@@ -106,7 +106,7 @@ typedef struct _xf_ble_gatts_service_t {
  * @brief BLE GATTS 发送通知或指示的信息
  */
 typedef struct {
-    xf_bt_attr_handle_t handle;     /*!< 属性句柄，见 @ref xf_bt_attr_handle_t */
+    xf_ble_attr_handle_t handle;     /*!< 属性句柄，见 @ref xf_ble_attr_handle_t */
     uint16_t value_len;                         /*!< 通知/指示的值长度 */
     uint8_t *value;                             /*!< 发送的通知/指示的值 */
 } xf_ble_gatts_ntf_ind_t;
@@ -116,7 +116,7 @@ typedef struct {
  */
 typedef struct {
     uint8_t           *value;                   /*!< 响应的值 */
-    uint16_t          len;                      /*!< 响应的值长度 */
+    uint16_t          value_len;                /*!< 响应的值长度 */
     uint16_t          offset;                   /*!< 属性值的偏移 */
 } xf_ble_gatts_response_value_t;
 
@@ -153,7 +153,7 @@ typedef struct {
 typedef struct {
     uint8_t app_id;                             /*!< 服务端 (应用) ID */
     uint16_t service_handle;                    /*!< 服务句柄 */
-    xf_bt_uuid_info_t service_id;               /*!< 服务 UUID，见 @ref xf_bt_uuid_info_t */
+    xf_ble_uuid_info_t service_id;               /*!< 服务 UUID，见 @ref xf_ble_uuid_info_t */
     xf_ble_gatt_service_type_t service_type;    /*!< 服务类型 */
 } xf_ble_evt_param_gatts_add_service_t;
 
@@ -172,7 +172,7 @@ typedef struct {
     uint8_t app_id;                             /*!< 服务端 (应用) ID */
     uint16_t service_handle;                    /*!< 服务句柄 */
     uint16_t chara_handle;                      /*!< 特征句柄 */
-    xf_bt_uuid_info_t chara_uuid;               /*!< 特征 UUID，见 @ref xf_bt_uuid_info_t */
+    xf_ble_uuid_info_t chara_uuid;               /*!< 特征 UUID，见 @ref xf_ble_uuid_info_t */
     uint16_t chara_value_handle;                /*!< 特征值句柄 */
 } xf_ble_evt_param_gatts_add_chara_t;
 
@@ -182,7 +182,7 @@ typedef struct {
 typedef struct {
     uint8_t app_id;                             /*!< 服务端 (应用) ID */
     uint16_t service_handle;                    /*!< 服务句柄 */
-    xf_bt_uuid_info_t desc_uuid;                /*!< 特征描述符 UUID，见 @ref xf_bt_uuid_info_t */
+    xf_ble_uuid_info_t desc_uuid;                /*!< 特征描述符 UUID，见 @ref xf_ble_uuid_info_t */
     uint16_t desc_handle;                       /*!< 特征描述符句柄 */
 } xf_ble_evt_param_gatts_add_chara_desc_t;
 
