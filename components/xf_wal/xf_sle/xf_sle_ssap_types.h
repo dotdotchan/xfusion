@@ -1,12 +1,12 @@
 /**
  * @file xf_sle_ssap_types.h
  * @author dotc (dotchan@qq.com)
- * @brief 
+ * @brief
  * @version 1.0
  * @date 2024-08-06
- * 
+ *
  * Copyright (c) 2024, CorAL. All rights reserved.
- * 
+ *
  */
 
 #ifndef __XF_SLE_SSAP_TYPES_H__
@@ -26,87 +26,6 @@ extern "C" {
 /* ==================== [Defines] =========================================== */
 
 /* ==================== [Typedefs] ========================================== */
-
-/**
- * @brief SLE UUID 类型 (长度类型)
- */
-typedef enum {
-    XF_SLE_UUID_TYPE_16 = 2,        /*!< 长度 16-bit */
-    XF_SLE_UUID_TYPE_128 = 16,      /*!< 长度 128-bit */
-} xf_sle_uuid_type_t;
-
-/**
- * @brief SLE UUID 信息 (多种长度类型通用)
- */
-typedef struct {
-    union {
-        xf_sle_uuid_type_t len_type;                /*!< UUID 长度类型，见 @ref xf_sle_uuid_type_t */
-        uint8_t _invalid;                           /*!< 用于固定 UUID 长度类型变量的大小为 8-bit */
-    };
-    union {
-        uint16_t    uuid16;                         /*!< 16-bit UUID */
-        uint8_t     uuid128[XF_SLE_UUID_TYPE_128];  /*!< 128-bit UUID */
-    };
-} __attribute__((packed)) xf_sle_uuid_info_t;
-
-/**
- * @brief SLE 16-bit UUID 信息
- */
-typedef struct {
-    union {
-        xf_sle_uuid_type_t type;                    /*!< UUID 长度类型，见 @ref xf_sle_uuid_type_t */
-        uint8_t _invalid;                           /*!< 用于固定 UUID 长度类型变量的大小为 8-bit */
-    };
-    uint16_t value;                                 /*!< 16-bit UUID */
-} __attribute__((packed)) xf_sle_uuid16_info_t;
-
-/**
- * @brief SLE 128-bit UUID 信息
- */
-typedef struct {
-    union {
-        xf_sle_uuid_type_t type;            /*!< UUID 长度类型，见 @ref xf_sle_uuid_type_t */
-        uint8_t _invalid;                   /*!< 用于固定 UUID 长度类型变量的大小为 8-bit */
-    };
-    uint8_t value[XF_SLE_UUID_TYPE_128];    /*!< 32-bit UUID */
-} __attribute__((packed)) xf_sle_uuid128_info_t;
-
-#define _XF_SLE_UUID16_INIT(uuid16)         \
-    {                                       \
-        .type = XF_SLE_UUID_TYPE_16,        \
-        .value = (uuid16),                  \
-    }
-
-#define _XF_SLE_UUID128_INIT(uuid128 ...)   \
-    {                                       \
-        .type = XF_SLE_UUID_TYPE_128,       \
-        .value = { uuid128 },               \
-    }
-
-/**
- * @brief SLE 声明一个 16-bit UUID
- * @note 通常用于填充服务结构时填入常量 UUID
- */
-#define XF_SLE_DECLARE_UUID16(uuid16) \
-    ((xf_sle_uuid_info_t *) (&(xf_sle_uuid16_info_t) _XF_SLE_UUID16_INIT(uuid16)))
-
-/**
- * @brief SLE 声明一个 128-bit UUID
- * @note 通常用于填充服务结构时填入常量 UUID
- */
-#define XF_SLE_DECLARE_UUID128(uuid128...) \
-    ((xf_sle_uuid_info_t *) (&(xf_sle_uuid128_info_t) _XF_SLE_UUID128_INIT(uuid128)))
-
-/**
- * @brief SLE 无效属性句柄
- * @note 通常用于对接服务结构添加时，判断服务、特征、特征描述符等属性的句柄是否有效
- */
-#define XF_SLE_INVALID_ATTR_HANDLE  (0x0000)
-
-/**
- * @brief SLE 属性句柄
- */
-typedef uint16_t xf_sle_attr_handle_t;
 
 /**
  * @brief SLE SSAP 服务类型
